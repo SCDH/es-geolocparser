@@ -66,32 +66,33 @@ class GeoLocParsing {
 const csvRx   = new RegExp(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)
 const pointRx = new RegExp(/^POINT \((?<lat>-?\d+(?:\.\d+)?) (?<lon>-?\d+(?:\.\d+)?)\)$/)
 
+export const csvParser = new GeoLocParser(
+  "CSVParser",
+  "Comma-separated floats",
+  input => csvRx.test(input),
+  input => {
+    const [ lat, lon ] = input.split(",").map(parseFloat)
+    return new GeoLocation(lat, lon)
+  }
+)
+
+export const pointParser = new GeoLocParser(
+  "POINT parser",
+  "POINT() notation",
+  input => pointRx.test(input),
+  input => {
+    const m = input.match(pointRx)
+    if (m && m.groups && m.groups.lat !== null && m.groups.lon !== null)
+      return new GeoLocation(
+        parseFloat(m.groups.lat),
+        parseFloat(m.groups.lon),
+      )
+    throw new Error("Couldn't match!")
+  }
+)
+
 const esGeoLocParsers: Array<GeoLocParser> = [
-
-  new GeoLocParser(
-    "CSVParser",
-    "Comma-separated floats",
-    input => csvRx.test(input),
-    input => {
-      const [ lat, lon ] = input.split(",").map(parseFloat)
-      return new GeoLocation(lat, lon)
-    }
-  ),
-
-  new GeoLocParser(
-    "POINT parser",
-    "POINT() notation",
-    input => pointRx.test(input),
-    input => {
-      const m = input.match(pointRx)
-      if (m && m.groups && m.groups.lat !== null && m.groups.lon !== null)
-        return new GeoLocation(
-          parseFloat(m.groups.lat),
-          parseFloat(m.groups.lon),
-        )
-      throw new Error("Couldn't match!")
-    }
-  )
+  csvParser, pointParser
 ]
 
 export class ESGeoLocParsing extends GeoLocParsing {
