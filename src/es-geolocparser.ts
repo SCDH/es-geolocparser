@@ -5,6 +5,9 @@ export class GeoLocation {
     this.lat = lat
     this.lon = lon
   }
+  toArray(): Array<number> {
+    return [this.lat, this.lon]
+  }
 }
 
 type ParserName = string
