@@ -21,7 +21,11 @@ class GeoLocParser {
   name: ParserName
   description: string
   parses: ParserCheck
-  parse: ParserFunction
+  private parse: ParserFunction
+  parseGeoLoc(input: string): GeoLocation | null {
+    if (! this.parses(input)) return null
+    return this.parse(input)
+  }
   constructor(name: ParserName, desc: string, parses: ParserCheck, parse: ParserFunction) {
     this.name         = name
     this.description  = desc
@@ -51,11 +55,11 @@ class GeoLocParsing {
     
     // Try to find a parser that parses the input
     for (const parser of this.parsers) {
-      if (parser.parses(input))
-        return {
-          geoLocation: parser.parse(input),
-          parserName: parser.name
-        }
+      if (parser.parses(input)) {
+        const geoLoc = parser.parseGeoLoc(input)
+        if (geoLoc) return {geoLocation: geoLoc, parserName: parser.name}
+        throw new Error("Invalid reality!")
+      }
     }
 
     // Nothing found
