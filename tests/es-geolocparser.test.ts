@@ -1,4 +1,11 @@
-import { csvParser, pointParser, ESGeoLocParsing, GeoLocParsingError } from '../src/es-geolocparser'
+import { csvParser, pointParser, ESGeoLocParsing, GeoLocParsingError, GeoLocation } from '../src/es-geolocparser'
+
+describe('Basics', () => {
+
+  test('GeoLocation creation', () => {
+    expect(new GeoLocation(42.17, 17.42)).toEqual({lat: 42.17, lon: 17.42})
+  })
+})
 
 describe('Testing CSV parser', () => {
 
