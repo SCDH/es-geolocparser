@@ -52,19 +52,16 @@ describe('Testing GeoLocParsing API', () => {
     const input = "Nope."
     try {
       parsing.parseGeoLoc(input)
-      test('Exception should be thrown by now', () => {
-        expect(true).toBe(false)
-      })
+      test('Exception should be thrown by now', fail)
     } catch (e) {
       expect(e).toBeInstanceOf(GeoLocParsingError)
       if (e instanceof GeoLocParsingError) {
         expect(e.input).toBe(input)
-        expect(e.unableParsers).toContain("CSV parser")
-        expect(e.unableParsers).toContain("POINT parser")
+        for (const name of parsing.parsers.map(p => p.name)) {
+          expect(e.unableParsers).toContain(name)
+        }
       } else {
-        test('Exception of an other type found', () => {
-          expect(true).toBe(false)
-        })
+        test('Exception of an other type found', fail)
       }
     }
   })
