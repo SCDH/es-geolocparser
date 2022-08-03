@@ -71,7 +71,7 @@ const csvRx   = new RegExp(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)
 const pointRx = new RegExp(/^POINT \((?<lat>-?\d+(?:\.\d+)?) (?<lon>-?\d+(?:\.\d+)?)\)$/)
 
 export const csvParser = new GeoLocParser(
-  "CSVParser",
+  "CSV parser",
   "Comma-separated floats",
   input => csvRx.test(input),
   input => {
