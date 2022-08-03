@@ -1,4 +1,4 @@
-import { csvParser, pointParser, ESGeoLocParsing } from '../src/es-geolocparser'
+import { csvParser, pointParser, ESGeoLocParsing, GeoLocParsingError } from '../src/es-geolocparser'
 
 describe('Testing CSV parser', () => {
 
@@ -30,20 +30,42 @@ describe('Testing POINT parser', () => {
   })
 })
 
-/*
 describe('Testing GeoLocParsing API', () => {
   const parsing = new ESGeoLocParsing()
 
   test('Parsing a CSV location', () => {
+    const result = parsing.parseGeoLoc("-17,42.666")
+    expect(result).not.toBeNull()
+    expect(result.geoLocation).toEqual({lat: -17, lon: 42.666})
+    expect(result.parserName).toBe('CSV parser')
 
   })
 
   test('Parsing a POINT location', () => {
-
+    const result = parsing.parseGeoLoc("POINT (3.14 1024)")
+    expect(result).not.toBeNull()
+    expect(result.geoLocation).toEqual({lat: 3.14, lon: 1024})
+    expect(result.parserName).toBe('POINT parser')
   })
 
   test('Parsing invalid data', () => {
-
+    const input = "Nope."
+    try {
+      parsing.parseGeoLoc(input)
+      test('Exception should be thrown by now', () => {
+        expect(true).toBe(false)
+      })
+    } catch (e) {
+      expect(e).toBeInstanceOf(GeoLocParsingError)
+      if (e instanceof GeoLocParsingError) {
+        expect(e.input).toBe(input)
+        expect(e.unableParsers).toContain("CSV parser")
+        expect(e.unableParsers).toContain("POINT parser")
+      } else {
+        test('Exception of an other type found', () => {
+          expect(true).toBe(false)
+        })
+      }
+    }
   })
 })
-*/
