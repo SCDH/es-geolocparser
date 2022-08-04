@@ -2,6 +2,7 @@
   "name": "es-geolocparser",
   "version": "0.0.2",
   "description": "Parse GeoLocation data like ElasticSearch",
+  "homepage": "https://github.com/SCDH/es-geolocparser",
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit && eslint \"**/*.ts\"",
