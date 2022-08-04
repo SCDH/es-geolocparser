@@ -1,4 +1,5 @@
-import { ESGeoLocParsing, GeoLocParsingError } from '../src/es-geolocparser'
+import { GeoLocParsingError } from '../src/geoloc-parsing'
+import { ESGeoLocParsing }    from '../src/es-geoloc-parsing'
 
 describe('Testing GeoLocParsing API', () => {
   const parsing = new ESGeoLocParsing()

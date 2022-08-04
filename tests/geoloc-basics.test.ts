@@ -1,4 +1,4 @@
-import { GeoLocation } from '../src/es-geolocparser'
+import { GeoLocation } from '../src/geoloc-parsing'
 
 describe('Basics', () => {
 

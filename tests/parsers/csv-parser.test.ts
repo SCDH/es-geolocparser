@@ -1,4 +1,4 @@
-import { csvParser } from '../../src/es-geolocparser'
+import { csvParser } from '../../src/parsers/es-csv-parser'
 
 describe('Testing CSV parser', () => {
 

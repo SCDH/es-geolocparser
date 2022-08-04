@@ -1,4 +1,4 @@
-import { pointParser } from '../../src/es-geolocparser'
+import { pointParser } from '../../src/parsers/es-point-parser'
 
 describe('Testing POINT parser', () => {
 
