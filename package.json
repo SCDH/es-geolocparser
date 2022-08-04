@@ -1,12 +1,14 @@
 {
   "name": "es-geolocparser",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "Parse GeoLocation data like ElasticSearch",
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit && eslint \"**/*.ts\"",
-    "test": "tsc && jest"
+    "test": "tsc && jest",
+    "prepare": "npm run build"
   },
+  "main": "dist/es-geoloc-parsing.js",
   "author": "Mirko Westermeier, Service Center for Digital Humanities, University of Muenster",
   "license": "MIT",
   "devDependencies": {
