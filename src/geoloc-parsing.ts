@@ -5,7 +5,7 @@ export class GeoLocation {
     this.lat = lat
     this.lon = lon
   }
-  toArray(): Array<number> {
+  toArray(): number[] {
     return [this.lat, this.lon]
   }
 }
@@ -39,8 +39,8 @@ export class GeoLocParser {
 
 export class GeoLocParsingError extends Error {
   input: string
-  unableParsers: Array<ParserName>
-  constructor(input: string, unableParsers: Array<ParserName>) {
+  unableParsers: ParserName[]
+  constructor(input: string, unableParsers: ParserName[]) {
     super()
     this.input          = input
     this.unableParsers  = unableParsers
@@ -48,9 +48,9 @@ export class GeoLocParsingError extends Error {
 }
 
 export class GeoLocParsing {
-  parsers: Array<GeoLocParser>
+  parsers: GeoLocParser[]
 
-  constructor(parsers: Array<GeoLocParser> = []) {
+  constructor(parsers: GeoLocParser[] = []) {
     this.parsers = parsers
   }
 
