@@ -3,11 +3,11 @@ import { csvParser } from '../../src/parsers/es-csv-parser'
 describe('Testing CSV parser', () => {
 
   describe('Parses something correctly', () => {
-    const correctCSV = "42.17,-17.42"
+    const correctCSV = "42,17"
     test('Input can be parsed', () =>
       expect(csvParser.parses(correctCSV)).toBe(true))
     test('Correct parsed result', () =>
-      expect(csvParser.parseGeoLoc(correctCSV)).toEqual({lat: 42.17, lon: -17.42}))
+      expect(csvParser.parseGeoLoc(correctCSV)).toEqual({lat: 42, lon: 17}))
   })
 
   describe('Doesn\'t parse "foo bar" correctly', () => {

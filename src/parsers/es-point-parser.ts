@@ -1,6 +1,6 @@
 import { GeoLocation, GeoLocParser } from "../geoloc-parsing"
 
-const pointRx = new RegExp(/^POINT \((?<lat>-?\d+(?:\.\d+)?) (?<lon>-?\d+(?:\.\d+)?)\)$/)
+const pointRx = new RegExp(/^POINT \((?<lat>-?\d+(?:\.\d+(e[+-]\d+)?)?) (?<lon>-?\d+(?:\.\d+)?(e[+-]\d+)?)\)$/)
 
 export const pointParser = new GeoLocParser(
   "POINT parser",

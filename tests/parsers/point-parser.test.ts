@@ -3,11 +3,11 @@ import { pointParser } from '../../src/parsers/es-point-parser'
 describe('Testing POINT parser', () => {
 
   describe('Parses something correctly', () => {
-    const correctPoint = "POINT (42.17 -17.42)"
+    const correctPoint = "POINT (42 17)"
     test('Input can be parsed', () =>
       expect(pointParser.parses(correctPoint)).toBe(true))
     test('Correct parsed result', () =>
-      expect(pointParser.parseGeoLoc(correctPoint)).toEqual({lat: 42.17, lon: -17.42}))
+      expect(pointParser.parseGeoLoc(correctPoint)).toEqual({lat: 42, lon: 17}))
   })
 
   describe('Doesn\'t parse "foo bar" correctly', () => {
