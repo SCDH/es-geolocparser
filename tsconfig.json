@@ -101,5 +101,9 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": [ "src/**/*.ts" ],                          /* D'Ooh! */
-  "exclude": [ "./tests?/*", "./ts.config.ts" ],         /* D'Oh! */
+  "exclude": [
+    "./tests?/*",
+    "./spec/*",
+    "./ts.config.ts",
+  ],                                                     /* D'Oh! */
 }
