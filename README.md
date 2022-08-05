@@ -1,5 +1,7 @@
 # ESGeoLocParsing - parse geo locations like ElasticSearch
 
+[![Build and test](https://github.com/SCDH/es-geolocparser/actions/workflows/test.yml/badge.svg)](https://github.com/SCDH/es-geolocparser/actions/workflows/test.yml)
+
 ## Setup
 
 ```bash
